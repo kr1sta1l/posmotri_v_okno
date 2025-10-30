@@ -9,13 +9,15 @@ html {
 }
 
 .page {
-  inline-size: 1200px;
-  block-size: 100%;
+  display: flex;
+  align-items: center;
   margin: auto;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+  inline-size: 1200px;
+  block-size: 100%;
 }
 
 h1,
@@ -35,4 +37,343 @@ fieldset {
 ul,
 ol {
   list-style: none;
+}
+
+
+/*
+  В макете ничего не говорится о скролле,
+  в уроке "Проектная работа «Посмотри в окно»" 
+  по видеодемонстрации скролл есть, но в браузерах его 
+  вид сильно отличается: в Firefox он выглядит лаконично - тонкий и темный,
+  а в моей версии Yandex Browser и Chrome он широкий и светлый,
+  что выбивается из общего стиля сайта.
+  Поэтому решил добавить кастомный скролл, похожий на Firefox.
+  (Заодно поменял и в самом FireFox, чтобы).
+
+  Реализацию подстмотрел здесь:
+  https://timeweb.cloud/tutorials/css-html/sozdanie-stilej-panelej-prokrutki-s-pomoshchyu-css
+*/
+
+/* Для НЕ FireFox */
+.content__list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.content__list::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background: rgb(128, 128, 128, 0.1);
+}
+
+.content__list::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: rgb(128, 128, 128, 0.5);
+}
+
+/* Для FireFox за компанию*/
+.content__list {
+  scrollbar-width: auto;
+  scrollbar-color: rgb(128, 128, 128) rgb(128, 128, 128, 0.1);
+}
+
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  block-size: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin: 0 30px;
+}
+
+
+.result__video-container {
+  position: relative;
+  width: 711px;
+  height: 386px;
+  margin: 78px 0 16px;
+}
+
+
+.result__video {
+  width: 100%;
+  height: 100%;
+}
+
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+
+.search-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: none;
+  
+}
+
+
+.search-form__fieldset-title {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+
+/*
+  Не none у border-left и border-right, чтобы текст 
+  "не скакал" при появлении этих границ
+*/
+.search-form__textfield {
+  box-sizing: border-box;
+  border-top: 1px solid white;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid white;
+  border-left: 1px solid transparent;
+  padding: 2px 0; 
+  overflow: visible;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  inline-size: 225px;
+  appearance: none;
+}
+
+
+.search-form__textfield:focus-visible {
+  outline: 1px solid white;
+  outline-offset: 1px;
+}
+
+.search-form__textfield:active {
+  border: 1px solid transparent;
+}
+
+
+/* нет  необходимости в .search-form__textfield:hover,
+поскольку не отличается от default */
+
+
+.search-form__checkbox-list {
+  display: flex;
+  gap: 15px;
+}
+
+
+.search-form__label {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+
+.search-form__label:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid white;
+  outline-offset: 1px;
+}
+
+
+.search-form__textfield::placeholder {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+
+.search-form__pseudo-checkbox {
+  position: relative;
+  display: block;
+  margin-top: 1px;
+  border: 1px solid white;
+  inline-size: 19px;
+  block-size: 19px;
+}
+
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background-color: white;
+}
+
+
+.search-form__label-text {
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0%;
+}
+
+
+.search-form__submit-button {
+  align-self: flex-end;
+}
+
+
+.button {
+  border: 1px solid white;
+  padding: 6px 0;
+  color: white;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0%;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  inline-size: 100%;
+}
+
+
+.button:hover {
+  text-decoration: underline;
+}
+
+
+.button:active {
+  background-color: #545050;
+}
+
+
+.button:focus {
+  outline: none;
+}
+
+
+.button:focus-visible {
+  outline: 1px solid white;
+  outline-offset: 1px;
+}
+
+
+.content__details {
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+
+.title {
+  font-family: Oswald;
+  font-weight: bold;
+  font-size: 75px;
+  line-height: 94%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+
+.title .content__accent {
+  color: #545050;
+}
+
+
+/* bug: u can scroll even when loading - not empty list */
+.content__list {
+  position: relative;
+  height: 298px;
+  /*
+    для корректного отображения обводки
+    при focus-visible у кнопки "Показать еще" и карточек городов
+  */
+  padding: 0 2px 2px 2px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/*
+  в макете ничего не сказано, но стандартное отображение при переключении
+  через tab такое себе, потому решил сделать с такой же обводкой
+*/
+.content__list:focus-visible {
+  outline: 1px solid white;
+}
+
+.content__list-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+
+.content__card-link {
+  display: block;
+  padding: 2px;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+
+.content__card-link:hover {
+  text-decoration: underline white;
+}
+
+
+.content__card-link:focus-visible {
+  outline: 1px solid white;
+} 
+
+
+.content__card-link_current {
+  background-color: #545050;
+}
+
+
+.content__video-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.content__video-card-title {
+  color: white;
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+
+.content__video-card-description {
+  margin-top: 6px;
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 16.2px;
+  letter-spacing: 0%;
+}
+
+
+.content__video-card-thumbnail {
+  width: 194px;
+  /* чтобы картинка не уменьшалась в случае большого числа символов в описании/названии города */
+  min-width: 194px;
+  height: 103px;
+  min-height: 103px;
+  object-fit: cover;
+  object-position: center;
 }
