@@ -106,6 +106,8 @@ ol {
 .result__video {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 
@@ -139,14 +141,14 @@ ol {
 */
 .search-form__textfield {
   box-sizing: border-box;
-  border-top: 1px solid white;
+  border-top: 1px solid currentColor;
   border-right: 1px solid transparent;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid currentColor;
   border-left: 1px solid transparent;
   padding: 2px 0; 
   overflow: visible;
   color: inherit;
-  font-family: inherit;
+  font-family: inherit, sans-serif;
   font-weight: inherit;
   font-size: inherit;
   background-color: transparent;
@@ -156,7 +158,7 @@ ol {
 
 
 .search-form__textfield:focus-visible {
-  outline: 1px solid white;
+  outline: 1px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -182,14 +184,14 @@ ol {
 }
 
 
-.search-form__label:hover {
+.search-form__label:hover .search-form__label-text {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 
 .search-form__label:has(:focus-visible) {
-  outline: 1px solid white;
+  outline: 1px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -207,7 +209,7 @@ ol {
   position: relative;
   display: block;
   margin-top: 1px;
-  border: 1px solid white;
+  border: 1px solid currentColor;
   inline-size: 19px;
   block-size: 19px;
 }
@@ -217,7 +219,7 @@ ol {
   content: "";
   position: absolute;
   inset: 1px;
-  background-color: white;
+  background-color: currentColor;
 }
 
 
@@ -234,9 +236,9 @@ ol {
 
 
 .button {
-  border: 1px solid white;
+  border: 1px solid currentColor;
   padding: 6px 0;
-  color: white;
+  color: currentColor;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -264,7 +266,7 @@ ol {
 
 
 .button:focus-visible {
-  outline: 1px solid white;
+  outline: 1px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -279,7 +281,7 @@ ol {
 
 
 .title {
-  font-family: Oswald;
+  font-family: Oswald, sans-serif;
   font-weight: bold;
   font-size: 75px;
   line-height: 94%;
@@ -302,9 +304,9 @@ ol {
     для корректного отображения обводки
     при focus-visible у кнопки "Показать еще" и карточек городов
   */
-  padding: 0 2px 2px 2px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  padding: 2px;
+  overflow: auto;
+  /* overflow-y: scroll; */
 }
 
 /*
@@ -312,7 +314,7 @@ ol {
   через tab такое себе, потому решил сделать с такой же обводкой
 */
 .content__list:focus-visible {
-  outline: 1px solid white;
+  outline: 1px solid currentColor;
 }
 
 .content__list-item:not(:last-child) {
@@ -335,7 +337,12 @@ ol {
 
 .content__card-link:focus-visible {
   outline: 1px solid white;
-} 
+}
+
+
+.content__card-link:active {
+  background-color: #545050;
+}
 
 
 .content__card-link_current {
@@ -351,7 +358,7 @@ ol {
 
 .content__video-card-title {
   color: white;
-  font-family: Oswald;
+  font-family: Oswald, sans-serif;
   font-weight: 700;
   font-size: 30px;
   letter-spacing: 0%;
